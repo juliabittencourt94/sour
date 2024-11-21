@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiaFlix</title>
+  <style>
+   
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #141414;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background-color: #000;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    .navbar ul li {
+      margin-left: 1rem;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    .navbar ul li a:hover {
+      color: #e50914;
+    }
+
+    .category {
+      padding: 2rem;
+    }
+
+    .category h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background-color: #222;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #000;
+    }
+
+    /* Estilos do Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      width: 90%;
+      max-width: 800px;
+      background-color: #141414;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+
+    .modal-content p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+    }
+
+    .modal-content a {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #e50914;
+      border-radius: 5px;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .modal-content a:hover {
+      background-color: #b00710;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 1.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <h1>LiaFlix</h1>
+    <nav>
+      <ul>
+        <li><a href="#filmes">Filmes</a></li>
+        <li><a href="#series">Séries</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Página Inicial -->
+  <main>
+    <section id="filmes" class="category">
+      <h2>Top 10 Filmes Favoritos</h2>
+      <div class="card-container">
+        <div class="card" onclick="openModal('Curtindo a Vida Adoidado (1986)', 'filme1.jpg', 'Ferris Bueller, um jovem carismático, decide faltar à escola e viver um dia inesquecível em Chicago ao lado de sua namorada e seu melhor amigo. Enquanto isso, o diretor da escola tenta desmascarar Ferris a todo custo.')">
+          <img src="filme1.jpg" alt="Curtindo a Vida Adoidado"> 
+          
+        </div>
+        <div class="card" onclick="openModal('Jogos Vorazes: A Cantiga dos Passáros e Serpentes (2023)', 'filme2.jpg', 'Ambientado 64 anos antes da história de Katniss Everdeen, o filme segue um jovem Coriolanus Snow, que é mentor de Lucy Gray, uma tributo do empobrecido Distrito 12. Entre desafios e alianças, a história revela as origens da crueldade que moldará Panem.')">
+          <img src="filme2.jpg" alt="Filme 2">
+        </div>
+        <div class="card" onclick="openModal('Sociedade dos Poetas Mortos (1989)', 'filme3.jpg', 'Em um colégio conservador, um professor de literatura inspira seus alunos a desafiar normas rígidas e perseguir suas paixões. Ao recriar o clube secreto Sociedade dos Poetas Mortos, os jovens encontram coragem para viver poeticamente, mas enfrentam consequências trágicas.')">
+          <img src="filme3.jpg" alt="Filme 3">
+        </div>
+        <div class="card" onclick="openModal('Uma Noite no Museu (2006)', 'filme4.jpg', 'Larry Daley, um segurança noturno de um museu, descobre que as exposições ganham vida à noite por causa de um artefato mágico. Ele precisa lidar com personagens históricos e animais enquanto tenta proteger o museu e manter seu emprego.')">
+          <img src="filme4.jpg" alt="Filme 4">
+        </div>
+        <div class="card" onclick="openModal('Harry Potter e o Enigma do Princípe (2009)', 'filme5.jpg', 'Harry e seus amigos investigam o passado de Voldemort com a ajuda do Professor Dumbledore e um misterioso livro de Poções. Ao mesmo tempo, os Comensais da Morte ameaçam Hogwarts, e Harry descobre segredos cruciais para derrotar seu inimigo.')">
+          <img src="filme5.jpg" alt="Filme 5">
+        </div>
+        <div class="card" onclick="openModal('Karate Kid (1984)', 'filme6.jpg', 'Daniel LaRusso, um adolescente que se muda para uma nova cidade, é vítima de bullying por parte de um grupo de lutadores de karatê. Com a ajuda do senhor Miyagi, um mestre de karatê, Daniel aprende a se defender e a valorizar a disciplina e o equilíbrio.')">
+          <img src="filme6.jpg" alt="Filme 6">
+        </div>
+        <div class="card" onclick="openModal('As Crônicas de Nárnia: Princípe Caspian (2008)', 'filme7.jpg', 'Os irmãos Pevensie retornam a Nárnia e encontram o reino dominado pelos Telmarinos. Juntos com o jovem Príncipe Caspian, eles lutam para restaurar a glória de Nárnia e enfrentar desafios mágicos em uma terra transformada.')">
+          <img src="filme7.jpg" alt="Filme 7">
+        </div>
+        <div class="card" onclick="openModal('Adoráveis Mulheres (2019)', 'filme8.jpg', 'Baseado no romance de Louisa May Alcott, o filme acompanha as irmãs March enquanto elas navegam por amores, ambições e perdas em meio às dificuldades da Guerra Civil Americana, explorando os laços familiares e a busca por independência.')">
+          <img src="filme8.jpg" alt="Filme 8">
+        </div>
+        <div class="card" onclick="openModal('10 Coisas Que Odeio Em Você (1999)', 'filme9.jpg', 'Uma moderna adaptação de A Megera Domada de Shakespeare, a história acompanha Bianca, que só pode namorar se sua irmã rebelde, Kat, também tiver um par. Um plano é traçado para que Patrick, um garoto misterioso, conquiste Kat, mas sentimentos verdadeiros emergem.')">
+          <img src="filme9.jpg" alt="Filme 9">
+        </div>
+        <div class="card" onclick="openModal('Star Wars: Episódio III - A Vingança dos Sith (2005)', 'filme10.jpg', 'Anakin Skywalker sucumbe ao lado sombrio da Força e se torna Darth Vader, manipulando sua lealdade para salvar Padmé. Enquanto isso, a República cai e o Império surge, marcando o fim trágico da Ordem Jedi e a ascensão do Imperador Palpatine.')">
+          <img src="filme10.jpg" alt="Filme 10">
+        </div>
+      
+      </div>
+    </section>
+
+    <section id="series" class="category">
+      <h2>Top 10 Séries Favoritas</h2>
+      <div class="card-container">
+        <div class="card" onclick="openModal('Modern Family (2009-2020)', 'serie1.jpg', 'A série acompanha três famílias modernas e suas dinâmicas únicas, explorando com humor os desafios e alegrias de relacionamentos, criação de filhos e convivência. Cada episódio mistura situações cômicas e emocionantes em um formato de falso documentário.')">
+          <img src="serie1.jpg" alt="Série 1">
+        </div>
+        <div class="card" onclick="openModal('Stranger Things (2016-)', 'serie2.jpg', 'Em uma pequena cidade dos anos 80, um garoto desaparece misteriosamente, levando seus amigos e familiares a descobrir um mundo paralelo chamado O Mundo Invertido. A trama mistura mistério, ficção científica e nostalgia com a ajuda de Eleven, uma menina com poderes extraordinários.')">
+          <img src="serie2.jpg" alt="Série 2">
+        </div>
+        <div class="card" onclick="openModal('This Is Us (2016-2022)', 'serie3.jpg', 'A série acompanha a vida de três irmãos e seus pais em diferentes momentos no tempo, explorando suas conexões, desafios e traumas. Com uma narrativa emocionante e não linear, revela como os pequenos eventos moldam suas histórias.')">
+          <img src="serie3.jpg" alt="Série 3">
+        </div>
+        <div class="card" onclick="openModal('O Verão Que Mudou Minha Vida (2022-)', 'serie4.jpg', 'Belly, uma adolescente, passa o verão em uma casa de praia com sua família e amigos próximos. Entre romances, segredos e amadurecimento, ela se encontra dividida entre dois irmãos enquanto descobre mais sobre si mesma.')">
+          <img src="serie4.jpg" alt="Série 4">
+        </div>
+        <div class="card" onclick="openModal('Gilmore Girls (2000-2007)', 'serie5.jpg', 'Lorelai, uma mãe solteira espirituosa, e Rory, sua filha estudiosa, compartilham um vínculo especial enquanto navegam por relacionamentos, trabalho e ambições na pitoresca cidade de Stars Hollow. A série é repleta de diálogos rápidos e referências culturais.')">
+          <img src="serie5.jpg" alt="Série 5">
+        </div>
+        <div class="card" onclick="openModal('Bridgerton (2020-)', 'serie6.jpg', 'Ambientada na alta sociedade londrina do século XIX, a série acompanha os romances e intrigas da família Bridgerton, enquanto Lady Whistledown, uma escritora misteriosa, narra os escândalos da temporada social.')">
+          <img src="serie6.jpg" alt="Série 6">
+        </div>
+        <div class="card" onclick="openModal('Gossip Girl (2007-2012)', 'serie7.jpg', '')">
+          <img src="serie7.jpg" alt="Série 7">
+        </div>
+        <div class="card" onclick="openModal('Cobra Kai (2018-2024)', 'serie8.jpg', 'Décadas após o torneio de Karate Kid, Johnny Lawrence reabre o dojo Cobra Kai, reacendendo sua rivalidade com Daniel LaRusso. A série explora conflitos de gerações, amizades e segundas chances em um cenário repleto de artes marciais.')">
+          <img src="serie8.jpg" alt="Série 8">
+        </div>
+        <div class="card" onclick="openModal('Diários de Um Vampiro (2009-2017)', 'serie9.jpg', 'Elena se apaixona por Stefan, um vampiro, mas a chegada de Damon, seu irmão, complica tudo. Em Mystic Falls, segredos sobrenaturais e perigos envolvem vampiros, bruxas e lobisomens.')">
+          <img src="serie9.jpg" alt="Série 9">
+        </div>
+        <div class="card" onclick="openModal('Sou Luna (2016-2018)', 'serie10.jpg', 'Luna Valente, uma adolescente apaixonada por patinação, muda-se do México para Buenos Aires, onde descobre segredos sobre sua origem e vive aventuras emocionantes em meio a rivalidades, amizades e paixões.')">
+          <img src="serie10.jpg" alt="Série 10">
+        </div>
+        <!-- Adicione mais séries aqui -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">×</span>
+      <img id="modal-image" src="" alt="Imagem do conteúdo">
+      <h1 id="modal-title"></h1>
+      <p id="modal-description"></p>
+      <a id="modal-watch" href="#" target="_blank">Assistir Agora</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 LiaFlix</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImage = document.getElementById('modal-image');
+    const modalDescription = document.getElementById('modal-description');
+    const modalWatch = document.getElementById('modal-watch');
+
+    function openModal(title, image, description) {
+      modalTitle.textContent = title;
+      modalImage.src = image;
+      modalDescription.textContent = description;
+      modalWatch.href = 'assistir.html'; // Altere para o link do player real
+      modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
